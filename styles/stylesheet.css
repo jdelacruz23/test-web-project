@@ -13,16 +13,8 @@
     --warm-white: #F8F5F2;
     --blush-pink: #FFC1CC;
     /* could be used for something!  */
-    /* --soft-blue: #A7C7E7; */
+    --soft-blue: #d9ecff;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
 
 * {
     margin: 0;
@@ -33,44 +25,48 @@
 body {
     min-height: 100vh;
     font-family: "Nunito Sans", sans-serif;
+    background-color: var(--warm-white);
 }
 
-.heading{
-    font-family: "Libre Baskerville", serif; 
+.heading {
+    font-family: "Libre Baskerville", serif;
 }
 
 nav {
-    background: linear-gradient(0deg, #A7C7E7 0%, rgba(196, 197, 222, 0.45) 0.01%, rgba(255, 193, 204, 0.9) 100%);
+    background:
+        linear-gradient(0deg, #A7C7E7 0%, rgba(196, 197, 222, 0.45) 0.01%, rgba(255, 193, 204, 0.9) 100%),
+        var(--warm-white);
     height: 5em;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    /* The z-index for the nav-menu is like so that it will stay on top of everything */
+    z-index: 99999;
 }
 
 /* Styles for the navigation links "Home Menu Contact"*/
 .nav-menu {
     display: flex;
-    list-style: none;
-    text-align: right;
     flex-direction: column;
     align-items: center;
+    list-style: none;
     padding: 2rem;
-    /* The z-index for the nav-menu is like so that it will stay on top of everything */
-    z-index: 99999;
     position: fixed;
     /*the menu will come from the right*/
     right: -100%;
-    top: 80px;
+    top: 5rem;
     gap: 2.5rem;
-    background-color: #d0d0d0;
+    background-color: var(--soft-blue);
     width: 100%;
     transition: 0.3s;
     height: 100vh;
-    /*have that transparent type look to it*/
-    opacity: 95%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.logo{
+.logo {
     caret-color: transparent;
     margin-left: 1rem;
 }
@@ -83,7 +79,7 @@ nav {
 }
 
 .logo img {
-    width: 30%; 
+    width: 30%;
     height: auto;
 }
 
@@ -91,7 +87,7 @@ nav {
     display: block;
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--charcoal); 
+    color: var(--charcoal);
     line-height: 1.2;
     font-family: "Libre Baskerville", serif;
 }
@@ -112,7 +108,7 @@ nav {
     margin: .4em;
     border-radius: 15px;
     transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-    background-color: black;
+    background-color: var(--charcoal);
     caret-color: transparent;
 }
 
@@ -137,118 +133,197 @@ nav {
 
 /** END OF HAMBURGER BUTTON FOR COLLAPSIBLE NAVBAR **/
 
-.search-container{
+
+/** START OF SEARCH BAR STYLE FOR MOBILE **/
+.search-container {
     display: flex;
     gap: .5rem;
-    /* margin-left: 1.5rem; */
     background-color: white;
     border-radius: 10px;
     padding: .5rem;
-    width: 100%;    
+    width: 100%;
     justify-content: space-between;
+    border: 1px solid var(--charcoal);
 }
 
-.search-bar{
+.search-bar {
     border: none;
     height: 2.5rem;
     padding: .5rem;
-    width: inherit;    
-
+    width: inherit;
 }
 
-.search-bar:focus{  
+.search-bar:focus {
     outline: none;
 }
+
 .search-icon {
     cursor: pointer;
     padding: 0 .5rem 0 .5rem;
     border-left: solid gray 1px;
 }
 
+/** END OF SEARCH BAR STYLE FOR MOBILE **/
 
-/* footer {
-    height: 10em;
-    width: 600px;
-    background: linear-gradient(to bottom, rgba(255, 193, 204, 0.9), rgba(196, 197, 222, 0.45));
+
+#hero-image-container {
+    margin: 1.5em;
+}
+
+.hero-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.site-image {
+    border-radius: 15px;
+    width: 100%;
+}
+
+main {
+    padding-top: 5em;
+}
+
+h1 {
+    margin: 1.5rem;
+}
+
+.site-content {
+    margin: 2rem;
+}
+
+.site-content .heading {
+    margin: 1.5rem 0 1.5rem 0;
+}
+
+
+/** Carousel Fun Fact Styling Begins */
+.carousel-container {
+    background:
+        linear-gradient(0deg, #A7C7E7 0%, rgba(196, 197, 222, 0.45) 0.01%, rgba(255, 193, 204, 0.9) 100%),
+        var(--warm-white);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.carousel {
+    width: 100%;
+    height: 40vh;
+    position: relative;
+    caret-color: transparent;
+}
+
+.carousel>ul {
+    list-style: none;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: 200ms opacity ease-in-out;
+    transition-delay: 200ms;
+}
+
+.slide>img {
+    display: block;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+.slide[data-active] {
+    opacity: 1;
+    z-index: 1;
+    transition-delay: 0ms;
+}
+
+.carousel-button {
+    position: absolute;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    bottom: -10%;
+    transform: translateY(-40%);
+    color: var(--charcoal);
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 0 .5rem;
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+    color: white;
+}
+
+.carousel-button:focus {
+    outline: 1px solid black;
+}
+
+.carousel-button.prev {
+    left: 1rem;
+}
+
+.carousel-button.next {
+    right: 1rem;
+}
+
+
+/** Carousel Fun Fact Styling Ends */
+
+
+.fun-fact p {
+    font-style: italic;
+}
+
+
+.warning-box {
+    padding: 1rem;
+}
+
+
+#rules-heading {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.halt-sign img {
+    width: 100px;
+    height: auto;
+}
+
+.rules-heading-text {
+    display: inline-block;
+}
+
+.warning-box .site-image {
+    width: 100%;
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+}
+
+.rules {
+    list-style: none;
+}
+
+.rule-emphasis {
+    font-weight: 800;
+    font-style: italic;
+}
+
+footer {
+    height: 5em;
+    width: 100%;
+    background: linear-gradient(to top, rgba(255, 193, 204, 0.9), rgba(196, 197, 222, 0.45));
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
-    font-size: 14px;
-} */
-
-/* .container {
-    padding: 10px;
+    font-size: 1rem;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
 }
-
-.search-icon {
-    cursor: pointer;
-    z-index: 10;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-bar {
-
-
-    position: inherit;
-
-    top: 50px;
-
-
-    right: 2px;
-
-    background: white;
-
-    border-radius: 5px;
-
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
-    width: 0;
-
-
-    height: 30px;
-
-
-    overflow: visible;
-
-    opacity: 0;
-
-
-
-}
-
-
-
-/* When the search bar is active, expand it */
-
-/* .search-bar.active {
-
-
-    width: 200px;
-
-    padding: 8px;
-
-    opacity: 1;
-
-}
-
-
-
-.search-bar input {
-
-
-    width: 95%;
-
-    padding: 5px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 5px;
-
-    outline: none;
-
-}
-
-*/
